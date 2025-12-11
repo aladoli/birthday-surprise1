@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مفاجأة عيد الميلاد</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff6b8b;
+            --secondary-color: #ff8e9e;
+            --accent-color: #ffd166;
+            --light-color: #fff5f7;
+            --dark-color: #6d2e46;
+            --gradient: linear-gradient(135deg, #ff6b8b 0%, #ff8e9e 50%, #ffd166 100%);
+            --shadow: 0 20px 40px rgba(109, 46, 70, 0.15);
+            --glow: 0 0 20px rgba(255, 107, 139, 0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'El Messiri', sans-serif;
+            background: linear-gradient(45deg, #f8f4ff, #fff5f7, #fff8f0);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            color: #333;
+            padding: 20px;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 107, 139, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 209, 102, 0.1) 0%, transparent 50%);
+            z-index: -2;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* صفحة الدخول */
+        #login-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .logo-container {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: var(--shadow), var(--glow);
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        
+        .logo i {
+            font-size: 50px;
+            color: white;
+        }
+        
+        h1 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+            max-width: 700px;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+        
+        .password-instruction {
+            background: linear-gradient(to right, rgba(255, 107, 139, 0.1), rgba(255, 209, 102, 0.1));
+            padding: 20px 25px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+            border-right: 4px solid var(--primary-color);
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .password-instruction i {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        
+        .password-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        
+        .date-inputs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .input-group label {
+            margin-bottom: 8px;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        input {
+            padding: 18px 20px;
+            font-size: 1.3rem;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--dark-color);
+            width: 140px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            font-family: 'El Messiri', sans-serif;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 20px rgba(255, 107, 139, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.4rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            margin-top: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            font-family: 'El Messiri', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 107, 139, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(-2px);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .btn:hover::after {
+            transform: translateX(100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .error-message {
+            color: #ff3e6d;
+            margin-top: 20px;
+            font-weight: bold;
+            display: none;
+            padding: 15px 25px;
+            background-color: rgba(255, 62, 109, 0.1);
+            border-radius: 10px;
+            border-right: 4px solid #ff3e6d;
+            animation: shake 0.5s ease;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+        }
+        
+        .hint {
+            margin-top: 30px;
+            color: var(--dark-color);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 18px 25px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px dashed var(--primary-color);
+            max-width: 700px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        /* صفحة التهنئة */
+        #birthday-page {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .birthday-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            padding: 50px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .birthday-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--gradient);
+        }
+        
+        .birthday-card::after {
+            content: "";
+            position: absolute;
+            top: 50px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 107, 139, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .birthday-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .birthday-title {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .birthday-subtitle {
+            color: var(--dark-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .message-container {
+            margin: 40px 0;
+            line-height: 1.9;
+            font-size: 1.4rem;
+            color: #444;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .message-box {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 245, 247, 0.9));
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border-right: 5px solid var(--primary-color);
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .message-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .message-box::before {
+            content: "\f164";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: -20px;
+            right: 30px;
+            background: var(--gradient);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+        }
+        
+        .decoration-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 40px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .decoration-item {
+            font-size: 50px;
+            animation: float 4s infinite ease-in-out;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+        }
+        
+        .decoration-item:nth-child(1) { color: #ff6b8b; animation-delay: 0s; }
+        .decoration-item:nth-child(2) { color: #ff8e9e; animation-delay: 0.7s; }
+        .decoration-item:nth-child(3) { color: #ffd166; animation-delay: 1.4s; }
+        .decoration-item:nth-child(4) { color: #06d6a0; animation-delay: 2.1s; }
+        .decoration-item:nth-child(5) { color: #118ab2; animation-delay: 2.8s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .special-note {
+            background: var(--gradient);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 40px;
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.6rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.3);
+            position: relative;
+            z-index: 1;
+            line-height: 1.7;
+        }
+        
+        .first-time {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-top: 30px;
+            text-align: center;
+            padding: 25px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            width: 100%;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 2px dashed var(--primary-color);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* الخلفية المتحركة */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient);
+            opacity: 0.1;
+            animation: floatAround 20s infinite linear;
+        }
+        
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 100px) rotate(90deg); }
+            50% { transform: translate(0, 200px) rotate(180deg); }
+            75% { transform: translate(-100px, 100px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+        /* النجوم المتساقطة */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            color: var(--accent-color);
+            font-size: 20px;
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        /* تصميم للهواتف */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .birthday-title {
+                font-size: 2.5rem;
+            }
+            
+            .birthday-card {
+                padding: 30px 20px;
+            }
+            
+            .date-inputs {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            input {
+                width: 90%;
+                max-width: 280px;
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+            
+            .password-instruction, .message-box, .special-note {
+                padding: 20px;
+                font-size: 1.1rem;
+            }
+            
+            .message-container {
+                font-size: 1.2rem;
+            }
+            
+            .btn {
+                padding: 18px 35px;
+                font-size: 1.2rem;
+            }
+            
+            .decoration-item {
+                font-size: 35px;
+            }
+        }
+        
+        /* تصميم للحواسيب الكبيرة */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1100px;
+            }
+            
+            .birthday-card {
+                padding: 60px;
+            }
+            
+            .birthday-title {
+                font-size: 4rem;
+            }
+        }
+        
+        /* تأثيرات إضافية */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            animation: sparkle 1.5s infinite;
+            z-index: 2;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="floating-elements"></div>
+    <div class="stars-container" id="stars-container"></div>
+    
+    <div class="container">
+        <!-- صفحة الدخول بكلمة المرور -->
+        <div id="login-page">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-gift"></i>
+                </div>
+            </div>
+            
+            <h1>مفاجأة عيد الميلاد 🎉</h1>
+            
+            <p class="subtitle">مرحباً بك في مفاجأتي الخاصة بمناسبة عيد ميلادك! هذا أول عيد ميلاد نحتفل به معاً، وأردت أن يكون مميزاً. أدخلي تاريخ ميلادك للكشف عن المفاجأة.</p>
+            
+            <div class="password-instruction">
+                <i class="fas fa-birthday-cake"></i>
+                <span>كلمة المرور هي تاريخ ميلادك (اليوم، الشهر، السنة)</span>
+            </div>
+            
+            <div class="password-container">
+                <div class="date-inputs">
+                    <div class="input-group">
+                        <label for="day">اليوم</label>
+                        <input type="number" id="day" placeholder="مثال: 20" min="1" max="31">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="month">الشهر</label>
+                        <input type="number" id="month" placeholder="مثال: 12" min="1" max="12">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="year">السنة</label>
+                        <input type="number" id="year" placeholder="مثال: 2006" min="1900" max="2024">
+                    </div>
+                </div>
+                
+                <button class="btn" id="login-btn">
+                    <i class="fas fa-lock-open"></i> اكتشفي المفاجأة
+                </button>
+                
+                <div class="error-message" id="error-message">
+                    تاريخ الميلاد غير صحيح. حاولي مرة أخرى!
+                </div>
+            </div>
+            
+            <div class="hint">
+                ✨ تذكري: هذا أول عيد ميلاد نحتفل به معًا، وهو بداية ذكريات جميلة سنصنعها سويًا
+            </div>
+        </div>
+        
+        <!-- صفحة عيد الميلاد -->
+        <div id="birthday-page">
+            <div class="birthday-card">
+                <div class="birthday-header">
+                    <h1 class="birthday-title">كل عام وأنتي بألف خير! 🎂</h1>
+                    <p class="birthday-subtitle">أطيب التمنيات في يوم ميلادك المميز</p>
+                </div>
+                
+                <div class="decoration-container">
+                    <div class="decoration-item">🎁</div>
+                    <div class="decoration-item">🎈</div>
+                    <div class="decoration-item">🎀</div>
+                    <div class="decoration-item">✨</div>
+                    <div class="decoration-item">🥳</div>
+                </div>
+                
+                <div class="message-container">
+                    <div class="message-box">
+                        <p>في يوم ميلادك، أتمنى لكي سنة مليئة بالإنجازات والفرح والنجاح. أنتي شخص مميزه وتستحقين كل الخير في هذا العالم.</p>
+                    </div>
+                    
+                    <div class="message-box">
+                        <p>أحب أن أقول لك كم أقدر وجودك في حياتي. أنتي رائعة تجعلين الأيام أكثر إشراقاً بوجودك.</p>
+                    </div>
+                    
+                    <div class="message-box">
+                        <p>في عيد ميلادك هذا، أتمنى لكي تحقيق كل أحلامك وأمنياتك. الحياة أمامك ، فاستمتعي بكل لحظة فيها.</p>
+                    </div>
+                </div>
+                
+                <div class="special-note">
+                    <p>هذا أول عيد ميلاد نحتفل به معًا، وأتمنى أن يكون بداية لسنوات عديدة نحتفل فيها سويًا. شكرًا لأنك جزء من حياتي!</p>
+                </div>
+                
+                <div class="first-time">
+                    <i class="fas fa-star"></i> أول عيد ميلاد من بين العديد من الأعياد التي سنقضيها معًا. إليكِ كل الحب والتقدير!
+                </div>
+            </div>
+            
+            <button class="btn" id="back-btn">
+                <i class="fas fa-arrow-right"></i> العودة
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // هنا يمكنك تغيير كلمة المرور (تاريخ ميلاد صديقتك)
+        const correctDay = 20;   // غير هذا إلى يوم ميلادها
+        const correctMonth = 12;  // غير هذا إلى شهر ميلادها
+        const correctYear = 2006; // غير هذا إلى سنة ميلادها
+
+        // عناصر الصفحة
+        const loginPage = document.getElementById('login-page');
+        const birthdayPage = document.getElementById('birthday-page');
+        const loginBtn = document.getElementById('login-btn');
+        const backBtn = document.getElementById('back-btn');
+        const errorMessage = document.getElementById('error-message');
+        const dayInput = document.getElementById('day');
+        const monthInput = document.getElementById('month');
+        const yearInput = document.getElementById('year');
+        const floatingElements = document.getElementById('floating-elements');
+        const starsContainer = document.getElementById('stars-container');
+
+        // إنشاء العناصر العائمة في الخلفية
+        function createFloatingElements() {
+            const elementCount = 15;
+
+            for (let i = 0; i < elementCount; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+
+                const size = Math.random() * 100 + 50;
+                element.style.width = size + 'px';
+                element.style.height = size + 'px';
+                element.style.top = Math.random() * 100 + 'vh';
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.animationDuration = (Math.random() * 30 + 20) + 's';
+                element.style.animationDelay = Math.random() * 5 + 's';
+
+                floatingElements.appendChild(element);
+            }
+        }
+
+        // إنشاء النجوم المتساقطة
+        function createStars() {
+            const starCount = 80;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.innerHTML = '✦';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.animationDuration = (Math.random() * 5 + 3) + 's';
+                star.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                star.style.opacity = Math.random() * 0.7 + 0.3;
+
+                starsContainer.appendChild(star);
+
+                // إزالة النجم بعد انتهاء الحركة
+                setTimeout(() => {
+                    star.remove();
+                }, 8000);
+            }
+        }
+
+        // إنشاء التألقات
+        function createSparkles() {
+            const sparkleCount = 5;
+            const birthdayCard = document.querySelector('.birthday-card');
+
+            if (!birthdayCard) return;
+
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 1 + 's';
+
+                birthdayCard.appendChild(sparkle);
+
+                // إزالة التألق بعد انتهاء الحركة
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 2000);
+            }
+        }
+
+        // تشغيل النجوم المتساقطة كل 500ms
+        setInterval(createStars, 500);
+
+        // تشغيل التألقات كل 2 ثانية
+        setInterval(createSparkles, 2000);
+
+        // التحقق من كلمة المرور
+        loginBtn.addEventListener('click', function () {
+            const day = parseInt(dayInput.value);
+            const month = parseInt(monthInput.value);
+            const year = parseInt(yearInput.value);
+
+            // التحقق من صحة التاريخ
+            if (isNaN(day) || isNaN(month) || isNaN(year)) {
+                showError("الرجاء إدخال تاريخ ميلاد صحيح");
+                return;
+            }
+
+            if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > 2024) {
+                showError("الرجاء إدخال تاريخ ميلاد صحيح");
+                return;
+            }
+
+            // التحقق من كلمة المرور
+            if (day === correctDay && month === correctMonth && year === correctYear) {
+                // كلمة المرور صحيحة - الانتقال بسلاسة
+                loginPage.style.animation = 'fadeOut 0.8s ease-out forwards';
+
+                setTimeout(() => {
+                    loginPage.style.display = 'none';
+                    birthdayPage.style.display = 'flex';
+                    birthdayPage.style.opacity = '0';
+
+                    // إضافة تأثيرات إضافية للصفحة الجديدة
+                    createFloatingElements();
+                    createStars();
+
+                    setTimeout(() => {
+                        birthdayPage.style.opacity = '1';
+                        birthdayPage.style.transition = 'opacity 1s';
+
+                        // إنشاء التألقات بعد ظهور الصفحة
+                        setTimeout(() => {
+                            createSparkles();
+                        }, 500);
+                    }, 100);
+                }, 800);
+            } else {
+                showError("تاريخ الميلاد غير صحيح. حاولي مرة أخرى!");
+            }
+        });
+
+        // إضافة تأثير fadeOut للانيميشن
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // العودة إلى صفحة الدخول
+        backBtn.addEventListener('click', function () {
+            birthdayPage.style.opacity = '0';
+            birthdayPage.style.transition = 'opacity 0.8s';
+
+            setTimeout(() => {
+                birthdayPage.style.display = 'none';
+                loginPage.style.display = 'flex';
+                loginPage.style.animation = 'fadeIn 1s ease-out';
+
+                // مسح الحقول
+                dayInput.value = '';
+                monthInput.value = '';
+                yearInput.value = '';
+
+                // إخفاء رسالة الخطأ إن كانت ظاهرة
+                errorMessage.style.display = 'none';
+            }, 800);
+        });
+
+        // إظهار رسالة الخطأ
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+
+            // اهتزاز الحقول
+            dayInput.style.borderColor = '#ff3e6d';
+            monthInput.style.borderColor = '#ff3e6d';
+            yearInput.style.borderColor = '#ff3e6d';
+
+            setTimeout(() => {
+                dayInput.style.borderColor = '';
+                monthInput.style.borderColor = '';
+                yearInput.style.borderColor = '';
+            }, 1500);
+        }
+
+        // السماح بالدخول بالضغط على زر Enter
+        [dayInput, monthInput, yearInput].forEach(input => {
+            input.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    loginBtn.click();
+                }
+            });
+        });
+
+        // تهيئة التأثيرات عند تحميل الصفحة
+        window.onload = function () {
+            createFloatingElements();
+            createStars();
+
+            // إضافة رسالة ترحيب في الكونسول
+            console.log("%c🎉 أهلاً بك في مفاجأة عيد الميلاد! 🎂", "color: #ff6b8b; font-size: 18px; font-weight: bold;");
+            console.log("%cهذا الموقع صمم خصيصاً لصديقة عزيزة بمناسبة عيد ميلادها", "color: #555; font-size: 14px;");
+        };
+    </script>
+</body>
+</html>
